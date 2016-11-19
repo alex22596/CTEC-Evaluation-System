@@ -60,19 +60,8 @@
         <!--/#header-->
         <section>
             <div class="container">
-                <div class="center-horizontally">
-                    <div class="button">
-                        <button type="button" name="button" id="createInstallation" class="btn btn-primary">Crear Pregunta</button>
-                    </div>
-                    <div class="button">
-                        <button type="button" name="button" id="modifyInstallation" class="btn btn-success">Modificar Pregunta</button>
-                    </div>
-                    <div class="button">
-                        <button type="button" name="button" id="deleteInstallation" class="btn btn-danger">Eliminar Pregunta</button>
-                    </div>
-                </div>
                 <div class="container center" id="showCreateInstallation">
-                    <form>
+                    <form method="post">
                         <div class="form-group">
                             <input type="name" class="form-control" id="Name" placeholder="Ingresa el Contenido de la Pregunta">
                         </div>
@@ -84,9 +73,51 @@
                                 <option value="3">Escala</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-info">Crear Pregunta</button>
+                        <button type="submit" class="btn btn-info" id ="crearPreguntaBoton">Crear Pregunta</button>
                     </form>
+                    <script> 
+                        $(function(){
+                            $("#crearPreguntaBoton").click(function(valueInput){
+                                console.log("ENTRO");
+                            $("#container").append('<div class="col-md-4">'+ valueInput +'</div>'); 
+                            $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-success" value="Modificar" name="btnIniciar"></div>'); 
+                            $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-danger" value="Eliminar" name="btnIniciar"></div>'); 
+                            });
+                        });
+                    </script>
                 </div>
+                <div>
+                    <?php
+                        include("abrir_conexion.php");
+                        $resultado = mysqli_query($conexion,"SELECT * FROM pregunta");
+                        while($row = mysqli_fetch_array($resultado)){                    
+                           $id =  $row['id'];
+                           ?>
+                           <script> 
+                            $(function(){
+                                $("#container").append('<div class="col-md-4">'+ '<?php echo $row['contenido']; ?>'+'</div>'); 
+                                $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-success" value="Modificar" name="btnIniciar"></div>'); 
+                            $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-danger" value="Eliminar" name="btnIniciar"></div>');
+                            });
+                            </script>
+                           <?php
+                           $resultadoI = mysqli_query($conexion,"SELECT * FROM opciones Where pregunta_id = '".$id."' ");
+                            while($rowI = mysqli_fetch_array($resultadoI)){ 
+                                ?>
+                                <script> 
+                                    $(function(){
+                                        $("#container").append('<div class="col-md-4">'+ '<?php echo $rowI['opcion']; ?>'+'</div>'); 
+                                        $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-success" value="Modificar" name="btnIniciar"></div>'); 
+                                    $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-danger" value="Eliminar" name="btnIniciar"></div>');
+                                    });
+                                    </script>
+                                <?php
+                            }
+                        }
+                        include("cerrar_conexion.php");
+                    ?>
+                </div>
+                <div id="container"></div>
                 <!--Modify Questions-->
                 <div class="container center" id="showModifyInstallation" hidden>
                     <form>

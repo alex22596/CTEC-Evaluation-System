@@ -60,17 +60,6 @@
         <!--/#header-->
         <section>
             <div class="container">
-                <div class="center-horizontally">
-                    <div class="button">
-                        <button type="button" name="button" id="createInstallation" class="btn btn-primary">Crear Cuestionario</button>
-                    </div>
-                    <div class="button">
-                        <button type="button" name="button" id="modifyInstallation" class="btn btn-success">Modificar Cuestionario</button>
-                    </div>
-                    <div class="button">
-                        <button type="button" name="button" id="deleteInstallation" class="btn btn-danger">Eliminar Cuestionario</button>
-                    </div>
-                </div>
                 <div class="container center" id="showCreateInstallation">
                     <form method = "POST">
                         <div class="form-group">
