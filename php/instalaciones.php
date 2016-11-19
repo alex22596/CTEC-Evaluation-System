@@ -16,9 +16,7 @@
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/responsive.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="../js/functionality.js">
-
-    </script>
+    <script src="../js/functionality.js"></script>
     <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -34,11 +32,11 @@
                 <div class="container">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                          <span class="sr-only">Toggle navigation</span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                      </button>
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
                         <a class="navbar-brand">
                             <h1><img src="../images/logo1.png" alt="logo"></h1>
                         </a>
@@ -60,90 +58,25 @@
         <!--/#header-->
         <section>
             <div class="container">
-                <div class="container center" id="showCreateInstallation">
-                    <form>
+                <div class="container center">
+                    <form method="post">
                         <div class="form-group">
-                            <input type="name" class="form-control" id="Name" placeholder="Ingresa el nombre de la Instalación">
+                            <input type="text" class="form-control" id="Name" placeholder="Ingresa el nombre de la Instalación">
                         </div>
-                        <div class="form-group row">
-                            <div class="col-xs-8 col-sm-10 col-md-11">
-                                <input type="email" class="form-control" id="Email1" placeholder="Ingresa el nombre del servicio">
-                            </div>
-                            <div class="col-xs-4 col-sm-2 col-md-1">
-                                <button type="submit" class="btn btn-success" id="id">Añadir</button>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-info">Crear Instalación</button>
+                        <button type="button" class="btn btn-info" id="crearInstalacionBoton">Crear Instalación</button>
                     </form>
+                    <script> 
+                        $(function(){
+                            $("#crearInstalacionBoton").click(function(valueInput){
+                                console.log("ENTRO");
+                            $("#container").append('<div class="col-md-4">'+ valueInput +'</div>'); 
+                            $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-success" value="Modificar" name="btnIniciar"></div>'); 
+                            $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-danger" value="Eliminar" name="btnIniciar"></div>'); 
+                            });
+                        });
+                    </script>
                 </div>
-                <!--Modify Instalation-->
-                <div class="container center" id="showModifyInstallation" hidden>
-                    <form>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                             <option value="1">Escoja la Instalacion que desea modificar</option>
-                             <option value="2">Instalación 1</option>
-                             <option value="3">Instalación 2</option>
-                             <option value="4">Instalación 3</option>
-                             <option value="5">Instalación 4</option>
-                         </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="name" class="form-control" id="Name" placeholder="Ingresa el nuevo nombre de la Instalación">
-                        </div>
-                        <div class="col-left">
-                            <div class="form-group row">
-                                <div class="col-xs-8 col-sm-10 col-md-8">
-                                    <h1>Servicio 1</h1>
-                                </div>
-                                <div class="col-xs-4 col-sm-2 col-md-2">
-                                    <button type="submit" class="btn btn-success" id="id">Modificar servicio</button>
-                                </div>
-                                <div class="col-xs-4 col-sm-2 col-md-2">
-                                    <button type="submit" class="btn btn-danger" id="id">Eliminar servicio</button>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-8 col-sm-10 col-md-8">
-                                    <h1>Servicio 2</h1>
-                                </div>
-                                <div class="col-xs-4 col-sm-2 col-md-2">
-                                    <button type="submit" class="btn btn-success" id="id">Modificar servicio</button>
-                                </div>
-                                <div class="col-xs-4 col-sm-2 col-md-2">
-                                    <button type="submit" class="btn btn-danger" id="id">Eliminar servicio</button>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-xs-8 col-sm-10 col-md-8">
-                                    <h1>Servicio 3</h1>
-                                </div>
-                                <div class="col-xs-4 col-sm-2 col-md-2">
-                                    <button type="submit" class="btn btn-success" id="id">Modificar servicio</button>
-                                </div>
-                                <div class="col-xs-4 col-sm-2 col-md-2">
-                                    <button type="submit" class="btn btn-danger" id="id">Eliminar servicio</button>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-info">Modificar Instalacion</button>
-                    </form>
-                </div>
-                <!--Delete Instalation-->
-                <div class="container center" id="showDeleteInstallation">
-                    <form>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                              <option value="1">Escoja la instalacion que desea eliminar</option>
-                              <option value="2">Instalacion 1</option>
-                              <option value="3">Instalacion 2</option>
-                              <option value="4">Instalacion 3</option>
-                              <option value="5">Instalacion 4</option>
-                          </select>
-                        </div>
-                        <button type="submit" class="btn btn-info">Eliminar Instalacion</button>
-                    </form>
-                </div>
+                <div id="container"></div>
             </div>
         </section>
     </div>
