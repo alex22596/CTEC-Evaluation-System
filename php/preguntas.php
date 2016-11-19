@@ -17,7 +17,9 @@
     <link href="../css/responsive.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="../js/functionality.js">
-
+    <?php
+    $opciones = array();
+    ?>
     </script>
     <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
@@ -61,30 +63,45 @@
         <section>
             <div class="container">
                 <div class="container center" id="showCreateInstallation">
-                    <form method="post">
+                    <form clas ="" method="POST" action="preguntas.php">
                         <div class="form-group">
-                            <input type="name" class="form-control" id="Name" placeholder="Ingresa el Contenido de la Pregunta">
+                            <input type="name" class="form-control" name="contenido" placeholder="Ingresa el Contenido de la Pregunta">
                         </div>
                         <div class="form-group">
-                            <select name="OS" class="form-control">
-                                <option value="0">Escoja el tipo de pregunta</option>
-                                <option value="1">Selección Única</option>
-                                <option value="2">Caja de Comentario</option>
-                                <option value="3">Escala</option>
+                            <select  name ="tipo" class="form-control">
+                                <option>Escoja el tipo de pregunta</option>
+                                <option>Selección Única</option>
+                                <option>Seleccion Multiple</option>
+                                <option>Escala</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-info" id ="crearPreguntaBoton">Crear Pregunta</button>
+                         <div class="form-group">                         
+                            <input type="name" class="form-control" name="Name" placeholder="Opcion 1">
+                        </div>
+                        <div class="form-group">                         
+                            <input type="name" class="form-control" name="Name" placeholder="Opcion 2">
+                        </div>
+                        <div class="form-group">                         
+                            <input type="name" class="form-control" name="Name" placeholder="Opcion 3">
+                        </div>
+                        <div class="form-group">                         
+                            <input type="name" class="form-control" name="Name" placeholder="Opcion 4">
+                        </div>
+                        <br>
+                        <input type="submit" class="btn btn-info" name ="crearPregunta" value="Crear Pregunta"></input>
                     </form>
-                    <script> 
-                        $(function(){
-                            $("#crearPreguntaBoton").click(function(valueInput){
-                                console.log("ENTRO");
-                            $("#container").append('<div class="col-md-4">'+ valueInput +'</div>'); 
-                            $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-success" value="Modificar" name="btnIniciar"></div>'); 
-                            $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-danger" value="Eliminar" name="btnIniciar"></div>'); 
-                            });
-                        });
-                    </script>
+                    <?php
+                    if(isset($_POST['crearPregunta']))
+                    {
+                      include("abrir_conexion.php");
+                      
+                      $contenido = $_POST['contenido'];
+                      $tipo = $_POST['tipo'];
+                      
+                      mysqli_query($conexion, "INSERT INTO pregunta (contenido,tipo) VALUES ('$contenido','$tipo')");
+                      include("cerrar_conexion.php");  
+                    }
+                    ?>
                 </div>
                 <div>
                     <?php

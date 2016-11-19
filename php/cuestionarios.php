@@ -83,11 +83,17 @@
                         <div class="form-group row">
                             <div class="col-xs-8 col-sm-10 col-md-11">
                                 <select name="OS" class="form-control">
-                                <option value="1">Escoja la Pregunta</option>
-                                <option value="2">Pregunta 1</option>
-                                <option value="3">Pregunta 2</option>
-                                <option value="4">Pregunta 3</option>
-                                <option value="5">Pregunta 4</option>
+                                <option value="0">Escoja la Pregunta</option>
+                                <?php
+                                    include("abrir_conexion.php");
+                                    $resultado = mysqli_query($conexion,"SELECT * FROM pregunta");
+                                    while($row = mysqli_fetch_array($resultado)){
+                                        echo "<option value='".$row['id']."'>";
+                                        echo $row['contenido'];
+                                        echo "</option>";
+                                    }
+                                    include("cerrar_conexion.php");
+                                ?>
                             </select>
                             </div>
                             <div class="col-xs-4 col-sm-2 col-md-1">
