@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,16 +72,24 @@
                     </div>
                 </div>
                 <div class="container center" id="showCreateInstallation">
-                    <form>
+                    <form method = "POST">
                         <div class="form-group">
                             <input type="name" class="form-control" id="Name" placeholder="Ingresa el nombre del cuestionario">
                         </div>
                         <div class="form-group">
                             <select name="OS" class="form-control">
-                            <option value="1">Escoja la Instalación</option>
-                            <option value="1">Instalación 1</option>
-                            <option value="1">Instalación 2</option>
-                        </select>
+                                <option value="0">Escoja la Instalación</option>
+                                <?php
+                                    include("abrir_conexion.php");
+                                    $resultado = mysqli_query($conexion,"SELECT * FROM instalacion");
+                                    while($row = mysqli_fetch_array($resultado)){
+                                        echo "<option value='".$row['id']."'>";
+                                        echo $row['nombre'];
+                                        echo "</option>";
+                                    }
+                                    include("cerrar_conexion.php");
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group row">
                             <div class="col-xs-8 col-sm-10 col-md-11">
@@ -119,10 +126,6 @@
                         <div class="form-group">
                             <select name="OS" class="form-control">
                             <option value="1">Escoja la Instalacion</option> 
-                            <option value="2">Instalacion 1</option> 
-                            <option value="3">Instalacion 2</option> 
-                            <option value="4">Instalacion 3</option> 
-                            <option value="5">Instalacion 4</option>
                         </select>
                             <div class="col-left">
                                 <div class="col-left">

@@ -78,12 +78,11 @@
                         </div>
                         <div class="form-group">
                             <select name="OS" class="form-control">
-                         <option value="1">Escoja el tipo de pregunta</option>
-                         <option value="2">Selección Única</option>
-                         <option value="3">Selección Múltiple</option>
-                         <option value="4">Caja de Comentario</option>
-                         <option value="5">Escala</option>
-                     </select>
+                                <option value="0">Escoja el tipo de pregunta</option>
+                                <option value="1">Selección Única</option>
+                                <option value="2">Caja de Comentario</option>
+                                <option value="3">Escala</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-info">Crear Pregunta</button>
                     </form>
@@ -93,12 +92,8 @@
                     <form>
                         <div class="form-group">
                             <select name="OS" class="form-control">
-                           <option value="1">Escoja la pregunta que desea modificar</option>
-                           <option value="2">Pregunta 1</option>
-                           <option value="3">Pregunta 2</option>
-                           <option value="4">Pregunta 3</option>
-                           <option value="5">Pregunta 4</option>
-                       </select>
+                                <option value="1">Escoja la pregunta que desea modificar</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <input type="name" class="form-control" id="Name" placeholder="Modifica la pregunta">
