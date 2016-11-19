@@ -33,7 +33,7 @@
             <div class="navbar navbar-inverse" role="banner">
                 <div class="container">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand">
                             <h1><img src="../images/logo1.png" alt="logo"></h1>
                         </a>
                     </div>
