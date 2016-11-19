@@ -10,20 +10,20 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/lightbox.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/animate.min.css" rel="stylesheet">
+    <link href="../css/lightbox.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/responsive.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="js/functionality.js">
+    <script src="../js/functionality.js">
 
     </script>
     <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
     <![endif]-->
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="shortcut icon" href="../images/logo1.png">
 </head>
 <!--/head-->
 
@@ -39,19 +39,19 @@
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
                       </button>
-                        <a class="navbar-brand" href="index.html">
-                            <h1><img src="images/logo1.png" alt="logo"></h1>
+                        <a class="navbar-brand" >
+                            <h1><img src="../images/logo1.png" alt="logo"></h1>
                         </a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="instalaciones.html">Instalaciones</a></li>
-                            <li class="active"><a href="cuestionarios.html">Cuestionarios</a></li>
-                            <li class="active"><a href="preguntas.html">Preguntas</a></li>
-                            <li class="active"><a href="respuestas.html">Respuestas</a></li>
+                            <li class="active"><a href="../php/instalaciones.php">Instalaciones</a></li>
+                            <li class="active"><a href="../php/cuestionarios.php">Cuestionarios</a></li>
+                            <li class="active"><a href="../php/preguntas.php">Preguntas</a></li>
+                            <li class="active"><a href="../php/respuestas.php">Respuestas</a></li>
                             <li class="active"><a href="#">Enviar Cuestionario</a></li>
                             <li class="active"><a href="#">Generar Reporte</a></li>
-                            <li class="active"><a href="login.html">Cerrar Sesión</a></li>
+                            <li class="active"><a href="../php/login.php">Cerrar Sesión</a></li>
                         </ul>
                     </div>
                 </div>
