@@ -63,32 +63,24 @@
                         <div class="form-group">
                             <input type="text" class="form-control" id="Name" placeholder="Ingresa el nombre de la Instalación">
                         </div>
-                        <button type="button" class="btn btn-info" id="crearInstalacionBoton">Crear Instalación</button>
+                        <input type="submit" class="btn btn-info" id="crearInstalacionBoton" value="Crear Instalación"></input>
                     </form>
-                    <script> 
-                        $(function(){
-                            $("#crearInstalacionBoton").click(function(valueInput){
-                                console.log("ENTRO");
-                            $("#container").append('<div class="col-md-4">'+ valueInput +'</div>'); 
-                            $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-success" value="Modificar" name="btnIniciar"></div>'); 
-                            $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-danger" value="Eliminar" name="btnIniciar"></div>'); 
-                            });
-                        });
-                    </script>
                 </div>
                 <div>
                     <?php
                         include("abrir_conexion.php");
-                        $resultado = mysqli_query($conexion,"SELECT * FROM instalacion");
+                        $contador = 1;
+                        $contador2 = (string) $contador;
+                        $resultado = mysqli_query($conexion,"SELECT * FROM instalacion"); 
                         while($row = mysqli_fetch_array($resultado)){                    
                            $id =  $row['id'];
-                           
                            ?>
                            <script> 
                             $(function(){
-                                $("#container").append('<div class="col-md-4">'+ '<?php echo $row['nombre']; ?>'+'</div>'); 
-                                $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-success" value="Modificar" name="btnIniciar"></div>'); 
-                            $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-danger" value="Eliminar" name="btnIniciar"></div>');
+                                $("#container").append('<div id="prueba '+ $contador2 +' class="row"></div>'); 
+                                $("#prueba'"+$contador2+"'").append('<div class="col-md-4"><h2>'+'<?php echo $row['nombre']; ?>'+'</h2></div>'); 
+                                $("#prueba'"+$contador2+"'").append('<div class="col-md-4"><input type="submit" class="btn btn-success" value="Modificar" name="btnIniciar"></div>'); 
+                                $("#prueba'"+$contador2+"'").append('<div class="col-md-4"><input type="submit" class="btn btn-danger" value="Eliminar" name="btnIniciar"></div>');
                             });
                             </script>
                            <?php
@@ -97,18 +89,17 @@
                                 ?>
                                 <script> 
                                     $(function(){
-                                        $("#container").append('<div class="col-md-4">'+ '<?php echo $rowI['servicio']; ?>'+'</div>'); 
-                                        $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-success" value="Modificar" name="btnIniciar"></div>'); 
-                                    $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-danger" value="Eliminar" name="btnIniciar"></div>');
+                                        $("#prueba").append('<div class="col-md-12"><h3>&emsp;&emsp;'+'<?php echo $rowI['servicio']; ?>'+'</h3></div>');  
                                     });
-                                    </script>
-                                <?php
+                                </script>
+                            <?php
                             }
+                            $contador++;
                         }
                         include("cerrar_conexion.php");
                     ?>
                 </div>
-                <div id="container"></div>
+                <div id="container" class="container"></div>
             </div>
         </section>
     </div>
