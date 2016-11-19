@@ -81,7 +81,8 @@
                         include("abrir_conexion.php");
                         $resultado = mysqli_query($conexion,"SELECT * FROM instalacion");
                         while($row = mysqli_fetch_array($resultado)){                    
-                           // echo $row['nombre'];
+                           $id =  $row['id'];
+                           
                            ?>
                            <script> 
                             $(function(){
@@ -91,6 +92,18 @@
                             });
                             </script>
                            <?php
+                           $resultadoI = mysqli_query($conexion,"SELECT * FROM servicios Where instalacion_id = '".$id."' ");
+                            while($rowI = mysqli_fetch_array($resultadoI)){ 
+                                ?>
+                                <script> 
+                                    $(function(){
+                                        $("#container").append('<div class="col-md-4">'+ '<?php echo $rowI['servicio']; ?>'+'</div>'); 
+                                        $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-success" value="Modificar" name="btnIniciar"></div>'); 
+                                    $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-danger" value="Eliminar" name="btnIniciar"></div>');
+                                    });
+                                    </script>
+                                <?php
+                            }
                         }
                         include("cerrar_conexion.php");
                     ?>
