@@ -65,6 +65,9 @@
                         </div>
                         <input type="submit" class="btn btn-info" id="crearInstalacionBoton" value="Crear Instalación"></input>
                     </form>
+                    <?php
+                        
+                    ?>
                 </div>
                 <div>
 

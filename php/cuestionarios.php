@@ -49,9 +49,9 @@
                             <li class="active"><a href="../php/cuestionarios.php">Cuestionarios</a></li>
                             <li class="active"><a href="../php/preguntas.php">Preguntas</a></li>
                             <li class="active"><a href="../php/respuestas.php">Respuestas</a></li>
-                            <li class="active"><a href="index.html">Enviar Cuestionario</a></li>
-                            <li class="active"><a href="index.html">Generar Reporte</a></li>
-                            <li class="active"><a href="index.html">Cerrar Sesión</a></li>
+                            <li class="active"><a href="#">Enviar Cuestionario</a></li>
+                            <li class="active"><a href="#">Generar Reporte</a></li>
+                            <li class="active"><a href="../php/login.php">Cerrar Sesión</a></li>
                         </ul>
                     </div>
                 </div>
