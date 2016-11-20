@@ -81,9 +81,9 @@
                             $(function(){
                                 $("#container").prepend('<div id="prueba'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
                                 $('#prueba'+'<?php echo $contador2;?>'+'').append('<div id="instalacion'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
-                                $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h2>'+'<?php echo $row['nombre']; ?>'+'</h2></div>'); 
-                                $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/edit.png" name="modificarInstalacion"'+'<?php echo $contador2;?>'+'"></form></div>'); 
-                                $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarInstalacion"'+'<?php echo $contador2;?>'+'"></form></div>');
+                                $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h2 id="nombreInstalacion'+'<?php echo $contador2;?>'+'">'+'<?php echo $row['nombre']; ?>'+'</h2></div>'); 
+                                $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/edit.png" name="modificarInstalacion'+'<?php echo $contador2;?>'+'"></form></div>'); 
+                                $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarInstalacion'+'<?php echo $contador2;?>'+'"></form></div>');
                             });
                             </script>
                            <?php
@@ -93,9 +93,9 @@
                                 <script> 
                                     $(function(){
                                         $('#prueba'+'<?php echo $contador2; ?>'+'').append('<div id="servicio'+'<?php echo $contador2;?>'+'" class="row"></div>');   
-                                        $('#servicio'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h3>&emsp;&emsp;'+'<?php echo $rowI['servicio']; ?>'+'</h3></div>'); 
-                                        $('#servicio'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><input type="image" src="../images/edit.png" name="modificarServicio"'+'<?php echo $contador2;?>'+'"></div>'); 
-                                        $('#servicio'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarServicio"'+'<?php echo $contador2;?>'+'"></form></div>');
+                                        $('#servicio'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h3 id="nombreServicio'+'<?php echo $contador2;?>'+'">'+'&emsp;&emsp;<?php echo $rowI['servicio'];?>'+'</h3></div>'); 
+                                        $('#servicio'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><input type="image" src="../images/edit.png" name="modificarServicio'+'<?php echo $contador2;?>'+'"></div>'); 
+                                        $('#servicio'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarServicio'+'<?php echo $contador2;?>'+'"></form></div>');
                                     });
                                 </script>
                             <?php
@@ -106,6 +106,30 @@
                 </div>
                 <div id="container" class="container"></div>
             </div>
+            <script>
+                $(document).ready(function() {
+                    $('input[type="image"]').click(function() {
+                        var buttonName = $(this).attr('name');
+                        
+                        var esInstalacion = buttonName.substring(0,buttonName.length -1);
+
+                        var ultimoElemento = buttonName[buttonName.length-1];
+                        
+                        if(esInstalacion == "modificarInstalacion" || esInstalacion == "eliminarInstalacion"){
+                            var concatenarNombreInstalacion = "#nombreInstalacion".concat(ultimoElemento);
+                            var nombreInstalacion = $(concatenarNombreInstalacion).text(); 
+                            alert(nombreInstalacion);
+                        }
+                        else{
+                            var concatenarNombreServicio = "#nombreServicio".concat(ultimoElemento);
+                            var nombreServicio = $(concatenarNombreServicio).text(); 
+                            var res = nombreServicio.replace("  ", "");
+                            alert(res);
+                            alert(nombreServicio);
+                        }
+                    });
+                });
+            </script>
         </section>
     </div>
     <footer class="site-footer">
