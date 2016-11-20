@@ -60,8 +60,20 @@
             <div class="container">
                 <div class="container center">
                     <form method="post">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="Name" placeholder="Ingresa el nombre de la Instalación">
+                        <div class="container">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <input type="text" class="form-control" id="nombreInstalacion" placeholder="Ingresa el nombre de la Instalación">
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="form-group col-md-10">
+                                    <input type="text" class="form-control" id="nombreServicio" placeholder="Ingresa el nombre del servicio">
+                                </div>
+                                <div class= "col-md-2">
+                                    <input type="button" class="btn btn-success" value="Añadir Servicio"> 
+                                </div>   
+                            </div>
                         </div>
                         <input type="submit" class="btn btn-info" id="crearInstalacionBoton" value="Crear Instalación"></input>
                     </form>
@@ -69,7 +81,7 @@
                         
                     ?>
                 </div>
-                <div>
+            <div>
 
                     <?php
                         include("abrir_conexion.php");

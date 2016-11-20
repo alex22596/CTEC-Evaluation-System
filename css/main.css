@@ -19,9 +19,14 @@
     line-height: 22px;
     color: #000;
   }
-  
+
+
+.pruebajeje{
+
+
+}
 .vcenter {
-    display: -ms-flexbox;
+  display: -ms-flexbox;
 	display: -webkit-flex;
 	display: flex;
 
