@@ -3,7 +3,6 @@
             $nombreInstalacion = $_POST['nombreInstalacion'];
             $esInst = $_POST['esInstalacion'];
             $esModifi = $_POST['esModificar'];
-            echo $esModifi;
             if(($esInst == "true")&&($esModifi == "false")){
                 include("abrir_conexion.php");
                 $resultado = mysqli_query($conexion,"SELECT id FROM instalacion WHERE nombre = '$nombreInstalacion'"); 

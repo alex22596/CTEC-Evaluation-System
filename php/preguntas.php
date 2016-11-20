@@ -76,16 +76,16 @@
                             </select>
                         </div>
                          <div class="form-group">                         
-                            <input type="name" class="form-control" name="Name" placeholder="Opcion 1">
+                            <input type="name" class="form-control" name="opcion1" placeholder="Opcion 1">
                         </div>
                         <div class="form-group">                         
-                            <input type="name" class="form-control" name="Name" placeholder="Opcion 2">
+                            <input type="name" class="form-control" name="opcion2" placeholder="Opcion 2">
                         </div>
                         <div class="form-group">                         
-                            <input type="name" class="form-control" name="Name" placeholder="Opcion 3">
+                            <input type="name" class="form-control" name="opcion3" placeholder="Opcion 3">
                         </div>
                         <div class="form-group">                         
-                            <input type="name" class="form-control" name="Name" placeholder="Opcion 4">
+                            <input type="name" class="form-control" name="opcion4" placeholder="Opcion 4">
                         </div>
                         <br>
                         <input type="submit" class="btn btn-info" name ="crearPregunta" value="Crear Pregunta"></input>
@@ -97,8 +97,19 @@
                       
                       $contenido = $_POST['contenido'];
                       $tipo = $_POST['tipo'];
-                      
+                      $opcion1 = $_POST['opcion1'];
+                      $opcion2 = $_POST['opcion2'];
+                      $opcion3 = $_POST['opcion3'];
+                      $opcion4 = $_POST['opcion4'];
                       mysqli_query($conexion, "INSERT INTO pregunta (contenido,tipo) VALUES ('$contenido','$tipo')");
+                      $resultado = mysqli_query($conexion, "SELECT id FROM pregunta WHERE contenido = '$contenido'");
+                      while($row = mysqli_fetch_array($resultado)){
+                            $id = $row['id'];
+                            mysqli_query($conexion, "INSERT INTO opciones (opcion,pregunta_id) VALUES ('$opcion1','$id')");
+                            mysqli_query($conexion, "INSERT INTO opciones (opcion,pregunta_id) VALUES ('$opcion2','$id')");
+                            mysqli_query($conexion, "INSERT INTO opciones (opcion,pregunta_id) VALUES ('$opcion3','$id')");
+                            mysqli_query($conexion, "INSERT INTO opciones (opcion,pregunta_id) VALUES ('$opcion4','$id')");                 
+                      }
                       include("cerrar_conexion.php");  
                     }
                     ?>
