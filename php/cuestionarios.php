@@ -63,10 +63,7 @@
                 <div class="container center" id="showCreateInstallation">
                     <form method = "POST">
                         <div class="form-group">
-                            <input type="name" class="form-control" id="Name" placeholder="Ingresa el nombre del cuestionario">
-                        </div>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
+                            <select name="OS1" class="form-control">
                                 <option value="0">Escoja la Instalación</option>
                                 <?php
                                     include("abrir_conexion.php");
@@ -80,9 +77,8 @@
                                 ?>
                             </select>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-xs-8 col-sm-10 col-md-11">
-                                <select name="OS" class="form-control">
+                        <div class="form-group">
+                            <select name="OS2" class="form-control">
                                 <option value="0">Escoja la Pregunta</option>
                                 <?php
                                     include("abrir_conexion.php");
@@ -95,13 +91,21 @@
                                     include("cerrar_conexion.php");
                                 ?>
                             </select>
-                            </div>
-                            <div class="col-xs-4 col-sm-2 col-md-1">
-                                <button type="submit" class="btn btn-success" id="id">Añadir</button>
-                            </div>
                         </div>
-                        <button type="submit" class="btn btn-info">Crear Instalación</button>
+                        <div>
+                            <input type="submit" class="btn btn-info" name="btnAgregar" value="Agregrar"></button>
+                        </div>
                     </form>
+                    <?php
+                        include("abrir_conexion.php");
+                        if(isset($_POST['btnAgregar'])){
+                            $instalacion = $_POST['OS1'];
+                            $pregunta = $_POST['OS2'];
+                      
+                            mysqli_query($conexion, "INSERT INTO evaluacion (instalacion_id,pregunta_id) VALUES ('$instalacion','$pregunta')");
+                        }
+                        include("cerrar_conexion.php");
+                    ?>
                 </div>
             </div>
         </section>

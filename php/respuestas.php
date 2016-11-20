@@ -61,25 +61,40 @@
             <div class="container">
                 <?php
                     include("abrir_conexion.php");
-                    $resultado = mysqli_query($conexion,"SELECT * FROM pregunta");
+                    $resultado = mysqli_query($conexion,"SELECT * FROM instalacion");
                     while($row = mysqli_fetch_array($resultado)){                    
-                        $id =  $row['id'];
+                        $idInsta =  $row['id'];
                         ?>
                         <script> 
-                        $(function(){
-                            $("#container").append('<div>'+ '<?php echo $row['contenido']; ?>'+'</div>'); 
-                        });
+                            $(function(){
+                                $("#container").append('<div><h2>'+ '<?php echo $row['nombre']; ?>'+'</h2></div>'); 
+                            });
                         </script>
                         <?php
-                        $resultadoI = mysqli_query($conexion,"SELECT * FROM respuesta Where pregunta_id = '".$id."' ");
-                        while($rowI = mysqli_fetch_array($resultadoI)){ 
-                            ?>
-                            <script> 
-                                $(function(){
-                                    $("#container").append('<div>'+ '<?php echo $rowI['opcion']; ?>'+'</div>'); 
-                                });
+                        $resultadoI = mysqli_query($conexion,"SELECT * FROM evaluacion where instalacion_id = '$idInsta'");
+                        while($rowI = mysqli_fetch_array($resultadoI)){                    
+                            $idPregu =  $rowI['pregunta_id'];
+                            $idEva = $rowI['id'];
+                            $resultadoII = mysqli_query($conexion,"SELECT * FROM pregunta where id = '$idPregu'");
+                            while($rowII = mysqli_fetch_array($resultadoII)){                    
+                                ?>
+                                <script> 
+                                    $(function(){
+                                        $("#container").append('<div><h3>'+ '<?php echo $rowII['contenido']; ?>'+'</h3></div>'); 
+                                    });
                                 </script>
-                            <?php
+                                <?php
+                                $resultadoIII = mysqli_query($conexion,"SELECT * FROM respuesta where pregunta_id = '$idPregu' && evaluacion_id = '$idEva'");
+                                while($rowIII = mysqli_fetch_array($resultadoIII)){                    
+                                    ?>
+                                    <script> 
+                                        $(function(){
+                                            $("#container").append('<div><h5>'+ '<?php echo $rowIII['opcion']; ?>'+'</h4></div>'); 
+                                        });
+                                    </script>
+                                    <?php
+                                } 
+                            } 
                         }
                     }
                     include("cerrar_conexion.php");
