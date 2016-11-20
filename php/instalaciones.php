@@ -10,12 +10,12 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/animate.min.css" rel="stylesheet">
     <link href="../css/lightbox.css" rel="stylesheet">
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/responsive.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="../js/functionality.js"></script>
     <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
@@ -67,20 +67,23 @@
                     </form>
                 </div>
                 <div>
+
                     <?php
                         include("abrir_conexion.php");
-                        $contador = 1;
-                        $contador2 = (string) $contador;
+                        $contador = 0;
                         $resultado = mysqli_query($conexion,"SELECT * FROM instalacion"); 
-                        while($row = mysqli_fetch_array($resultado)){                    
+                        while($row = mysqli_fetch_array($resultado)){   
+                           $contador+=1;
+                           $contador2 = strval($contador);              
                            $id =  $row['id'];
                            ?>
                            <script> 
                             $(function(){
-                                $("#container").append('<div id="prueba '+ $contador2 +' class="row"></div>'); 
-                                $("#prueba'"+$contador2+"'").append('<div class="col-md-4"><h2>'+'<?php echo $row['nombre']; ?>'+'</h2></div>'); 
-                                $("#prueba'"+$contador2+"'").append('<div class="col-md-4"><input type="submit" class="btn btn-success" value="Modificar" name="btnIniciar"></div>'); 
-                                $("#prueba'"+$contador2+"'").append('<div class="col-md-4"><input type="submit" class="btn btn-danger" value="Eliminar" name="btnIniciar"></div>');
+                                $("#container").prepend('<div id="prueba'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
+                                $('#prueba'+'<?php echo $contador2;?>'+'').append('<div id="instalacion'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
+                                $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h2>'+'<?php echo $row['nombre']; ?>'+'</h2></div>'); 
+                                $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/edit.png" name="modificarInstalacion"'+'<?php echo $contador2;?>'+'"></form></div>'); 
+                                $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarInstalacion"'+'<?php echo $contador2;?>'+'"></form></div>');
                             });
                             </script>
                            <?php
@@ -89,12 +92,14 @@
                                 ?>
                                 <script> 
                                     $(function(){
-                                        $("#prueba").append('<div class="col-md-12"><h3>&emsp;&emsp;'+'<?php echo $rowI['servicio']; ?>'+'</h3></div>');  
+                                        $('#prueba'+'<?php echo $contador2; ?>'+'').append('<div id="servicio'+'<?php echo $contador2;?>'+'" class="row"></div>');   
+                                        $('#servicio'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h3>&emsp;&emsp;'+'<?php echo $rowI['servicio']; ?>'+'</h3></div>'); 
+                                        $('#servicio'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><input type="image" src="../images/edit.png" name="modificarServicio"'+'<?php echo $contador2;?>'+'"></div>'); 
+                                        $('#servicio'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarServicio"'+'<?php echo $contador2;?>'+'"></form></div>');
                                     });
                                 </script>
                             <?php
                             }
-                            $contador++;
                         }
                         include("cerrar_conexion.php");
                     ?>
