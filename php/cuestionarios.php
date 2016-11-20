@@ -103,72 +103,7 @@
                         <button type="submit" class="btn btn-info">Crear Instalación</button>
                     </form>
                 </div>
-                <!--Modify Instalation-->
-                <div class="container center" id="showModifyInstallation" hidden>
-                    <form action="">
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                            <option value="1">Escoja la evaluacion que desea modificar</option> 
-                            <option value="2">Evaluacion 1</option> 
-                            <option value="3">Evaluacion 2</option> 
-                            <option value="4">Evaluacion 3</option> 
-                            <option value="5">Evaluacion 4</option>
-                        </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="name" class="form-control" id="Name" placeholder="Ingresa el nuevo nombre de la evaluacion">
-                        </div>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                            <option value="1">Escoja la Instalacion</option> 
-                        </select>
-                            <div class="col-left">
-                                <div class="col-left">
-                                    <div class="form-group row">
-                                        <div class="col-xs-8 col-sm-10 col-md-10">
-                                            <h1>Pregunta 1</h1>
-                                        </div>
-                                        <div class="col-xs-4 col-sm-2 col-md-2">
-                                            <input type="checkbox" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-xs-8 col-sm-10 col-md-10">
-                                            <h1>Pregunta 2</h1>
-                                        </div>
-                                        <div class="col-xs-4 col-sm-4 col-md-2">
-                                            <input type="checkbox" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-xs-8 col-sm-10 col-md-10">
-                                            <h1>Pregunta 3</h1>
-                                        </div>
-                                        <div class="col-xs-4 col-sm-2 col-md-2">
-                                            <input type="checkbox" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-info">Modificar Evaluacion</button>
-                    </form>
-                </div>
-                <!--Delete Instalation-->
-                <div class="container center" id="showDeleteInstallation" hidden>
-                    <form>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                                <option value="1">Escoja la evaluación que desea eliminar</option> 
-                                <option value="2">Evaluación 1</option> 
-                                <option value="3">Evaluación 2</option> 
-                                <option value="4">Evaluación 3</option> 
-                                <option value="5">Evaluación 4</option>
-                            </select>
-                        </div>
-                    </form>
-                    <button type="submit" class="btn btn-info">Eliminar Evaluación</button>
-                </div>
+            </div>
         </section>
         </div>
         <footer class="site-footer">

@@ -57,128 +57,35 @@
                 </div>
             </div>
         </header>
-        <!--/#header-->
         <section>
             <div class="container">
-                <div class="center-horizontally">
-                    <div class="button">
-                        <button type="button" name="button" id="createInstallation" class="btn btn-primary">Crear Opción</button>
-                    </div>
-                    <div class="button">
-                        <button type="button" name="button" id="modifyInstallation" class="btn btn-success">Modificar Opción</button>
-                    </div>
-                    <div class="button">
-                        <button type="button" name="button" id="deleteInstallation" class="btn btn-danger">Eliminar Opción</button>
-                    </div>
-                </div>
-                <div class="container center" id="showCreateInstallation">
-                    <form>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                          <option value="1">Escoja la Instalación</option>
-                          <option value="2">Instalación 1</option>
-                          <option value="3">Instalación 2</option>
-                          <option value="4">Instalación 3</option>
-                          <option value="5">Instalación 4</option>
-                      </select>
-                        </div>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                          <option value="1">Escoja la pregunta a la que desea agregarle opciones</option>
-                          <option value="2">Pregunta 1</option>
-                          <option value="3">Pregunta 2</option>
-                          <option value="4">Pregunta 3</option>
-                          <option value="5">Pregunta 4</option>
-                      </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <input type="radio" class="form-control">
-                                </div>
-                                <div class="col-md-11">
-                                    <input type="text" class="form-control" placeholder="Ingresa la opción">
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-info">Crear Respuesta</button>
-                    </form>
-                </div>
-                <!--Modify Instalation-->
-                <div class="container center" id="showModifyInstallation" hidden>
-                    <form>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                            <option value="1">Escoja la Instalación</option>
-                            <option value="2">Instalación 1</option>
-                            <option value="3">Instalación 2</option>
-                            <option value="4">Instalación 3</option>
-                            <option value="5">Instalación 4</option>
-                        </select>
-                        </div>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                            <option value="1">Escoja la pregunta</option>
-                            <option value="2">Pregunta 1</option>
-                            <option value="3">Pregunta 2</option>
-                            <option value="4">Pregunta 3</option>
-                            <option value="5">Pregunta 4</option>
-                        </select>
-                        </div>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                            <option value="1">Escoja la respuesta que desea modificar</option>
-                            <option value="2">Respuesta 1</option>
-                            <option value="3">Respuesta 2</option>
-                            <option value="4">Respuesta 3</option>
-                            <option value="5">Respuesta 4</option>
-                        </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <input type="radio" class="form-control">
-                                </div>
-                                <div class="col-md-11">
-                                    <input type="text" class="form-control" placeholder="Ingresa la nueva opción">
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-info">Modificar Respuesta</button>
-                    </form>
-                </div>
-                <!--Delete Instalation-->
-                <div class="container center" id="showDeleteInstallation" hidden>
-                    <form>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                         <option value="1">Escoja la Instalación</option>
-                         <option value="2">Instalación 1</option>
-                         <option value="3">Instalación 2</option>
-                         <option value="4">Instalación 3</option>
-                         <option value="5">Instalación 4</option>
-                     </select>
-                        </div>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                         <option value="1">Escoja la pregunta</option>
-                         <option value="2">Pregunta 1</option>
-                         <option value="3">Pregunta 2</option>
-                         <option value="4">Pregunta 3</option>
-                         <option value="5">Pregunta 4</option>
-                     </select>
-                        </div>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                         <option value="1">Escoja la respuesta que desea Eliminar</option>
-                         <option value="2">Respuesta 1</option>
-                         <option value="3">Respuesta 2</option>
-                         <option value="4">Respuesta 3</option>
-                         <option value="5">Respuesta 4</option>
-                     </select>
-                        </div>
-                        <button type="submit" class="btn btn-info">Eliminar Respuesta</button>
-                    </form>
+                <?php
+                    include("abrir_conexion.php");
+                    $resultado = mysqli_query($conexion,"SELECT * FROM pregunta");
+                    while($row = mysqli_fetch_array($resultado)){                    
+                        $id =  $row['id'];
+                        ?>
+                        <script> 
+                        $(function(){
+                            $("#container").append('<div>'+ '<?php echo $row['contenido']; ?>'+'</div>'); 
+                        });
+                        </script>
+                        <?php
+                        $resultadoI = mysqli_query($conexion,"SELECT * FROM respuesta Where pregunta_id = '".$id."' ");
+                        while($rowI = mysqli_fetch_array($resultadoI)){ 
+                            ?>
+                            <script> 
+                                $(function(){
+                                    $("#container").append('<div>'+ '<?php echo $rowI['opcion']; ?>'+'</div>'); 
+                                });
+                                </script>
+                            <?php
+                        }
+                    }
+                    include("cerrar_conexion.php");
+                ?>
+                <div id="container">
+
                 </div>
             </div>
         </section>

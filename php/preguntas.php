@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <select  name ="tipo" class="form-control">
                                 <option>Escoja el tipo de pregunta</option>
-                                <option>Selección Única</option>
+                                <option>Seleccion Unica</option>
                                 <option>Seleccion Multiple</option>
                                 <option>Escala</option>
                             </select>
@@ -134,44 +134,8 @@
                         include("cerrar_conexion.php");
                     ?>
                 </div>
-                <div id="container"></div>
-                <!--Modify Questions-->
-                <div class="container center" id="showModifyInstallation" hidden>
-                    <form>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                                <option value="1">Escoja la pregunta que desea modificar</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="name" class="form-control" id="Name" placeholder="Modifica la pregunta">
-                        </div>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                           <option value="1">Escoja el tipo de pregunta</option>
-                           <option value="2">Selección Única</option>
-                           <option value="3">Selección Múltiple</option>
-                           <option value="4">Caja de Comentario</option>
-                           <option value="5">Escala</option>
-                       </select>
-                        </div>
-                        <button type="submit" class="btn btn-info">Modificar Pregunta</button>
-                    </form>
-                </div>
-                <!--Delete Instalation-->
-                <div class="container center" id="showDeleteInstallation" hidden>
-                    <form>
-                        <div class="form-group">
-                            <select name="OS" class="form-control">
-                         <option value="1">Escoja la pregunta que desea eliminar</option>
-                         <option value="2">Pregunta 1</option>
-                         <option value="3">Pregunta 2</option>
-                         <option value="4">Pregunta 3</option>
-                         <option value="5">Pregunta 4</option>
-                     </select>
-                        </div>
-                        <button type="submit" class="btn btn-info">Eliminar Pregunta</button>
-                    </form>
+                <div id="container">
+
                 </div>
             </div>
         </section>
