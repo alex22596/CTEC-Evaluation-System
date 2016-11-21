@@ -108,25 +108,42 @@
                                 var listaPreguntas = [];
                                 $( "#agregarPregunta" ).click(function() {
                                     var preguntaSeleccionada = $( "#seleccionarPregunta" ).val();
-                                    if(!listaPreguntas.includes(preguntaSeleccionada)){
-                                        listaPreguntas.push(preguntaSeleccionada); 
+                                    if(preguntaSeleccionada != "0"){
+                                         if(!listaPreguntas.includes(preguntaSeleccionada)){
+                                            listaPreguntas.push(preguntaSeleccionada); 
+                                        }
+                                        else{
+                                            alert("Ya Se Agregó Esta Pregunta.");
+                                        }
                                     }
                                     else{
-                                        alert("Ya Se Agregó Esta Pregunta.");
+                                        alert("No se Puede Agregar Esta Opción.")
                                     }
                                 });
                                 $( "#agregarCuestionario" ).click(function() {
                                     var instalacionSeleccionada = $( "#seleccionarInstalacion" ).val();
                                     var listaPreguntasString = listaPreguntas.toString(); // result: a,b,c
-                                    $.ajax({
-                                        url: "anadirCuestionario.php", // php file path
-                                        type: "POST", // send data method
-                                        data: ({nombreInst: instalacionSeleccionada, listaPreg: listaPreguntasString}),
-                                        success: function(data){
-                                            alert(data);
-                                            
-                                        } // response of ajax
-                                    });
+                                    if(instalacionSeleccionada != "0" && listaPreguntas.length != 0){
+                                        $.ajax({
+                                            url: "anadirCuestionario.php", // php file path
+                                            type: "POST", // send data method
+                                            data: ({nombreInst: instalacionSeleccionada, listaPreg: listaPreguntasString}),
+                                            success: function(data){
+                                                
+                                            } // response of ajax
+                                        });
+                                    }
+                                    else if(instalacionSeleccionada != "0" && listaPreguntas.length == 0){
+                                         alert("Debe de Seleccionar al Menos una Pregunta.");
+
+                                    }
+                                    else if(instalacionSeleccionada == "0" && listaPreguntas.length != 0){
+                                         alert("Debe de Seleccionar una Instalación.");
+
+                                    }
+                                    else{
+                                        alert("Debe de Seleccionar al Menos una Pregunta y Solo Una Instalación.");
+                                    }
                                 });
 
                             });
