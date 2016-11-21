@@ -158,26 +158,36 @@
                 <div>
                     <?php
                         include("abrir_conexion.php");
+                        $contador = 0;
+                        $contadorOpciones = 0;
+                        //$contadorServicios = 0;
                         $resultado = mysqli_query($conexion,"SELECT * FROM pregunta");
                         while($row = mysqli_fetch_array($resultado)){                    
-                           $id =  $row['id'];
+                            $id =  $row['id'];
+                            $contador+=1;
+                            $contador2 = strval($contador); 
                            ?>
                            <script> 
                             $(function(){
-                                $("#container").append('<div class="col-md-4">'+ '<?php echo $row['contenido']; ?>'+'</div>'); 
-                                $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-success" value="Modificar" name="btnIniciar"></div>'); 
-                            $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-danger" value="Eliminar" name="btnIniciar"></div>');
+                                $("#container").append('<div id="prueba'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
+                                $('#prueba'+'<?php echo $contador2;?>'+'').append('<div id="containerContPregunta'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
+                                
+                                $('#containerContPregunta'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h2 id="contPreg'+'<?php echo $contador2;?>'+'">'+'<?php echo $row['contenido']; ?>'+'</h2></div>'); 
+                                $('#containerContPregunta'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/edit.png" name="modificarContenidoPreg'+'<?php echo $contador2;?>'+'"></form></div>'); 
+                                $('#containerContPregunta'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarContenidoPreg'+'<?php echo $contador2;?>'+'"></form></div>');
+                                $('#prueba'+'<?php echo $contador2; ?>'+'').append('<div id="opcionesPregunta'+'<?php echo $contador2;?>'+'" class="row"></div>');   
                             });
                             </script>
                            <?php
                            $resultadoI = mysqli_query($conexion,"SELECT * FROM opciones Where pregunta_id = '".$id."' ");
                             while($rowI = mysqli_fetch_array($resultadoI)){ 
+                                $contadorOpciones+=1;
+                                $contadorOpcionesString = strval($contadorOpciones);
                                 ?>
                                 <script> 
                                     $(function(){
-                                        $("#container").append('<div class="col-md-4">'+ '<?php echo $rowI['opcion']; ?>'+'</div>'); 
-                                        $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-success" value="Modificar" name="btnIniciar"></div>'); 
-                                    $("#container").append('<div class="col-md-4"><input type="submit" class="btn btn-danger" value="Eliminar" name="btnIniciar"></div>');
+                                        $('#opcionesPregunta'+'<?php echo $contador2; ?>'+'').append('<div id="containerOpciones'+'<?php echo $contadorOpcionesString;?>'+'" class="row"></div>'); 
+                                        $('#containerOpciones'+'<?php echo $contadorOpcionesString; ?>'+'').append('<div class="col-md-4"><h3 id="nombreOpcion'+'<?php echo $contadorOpcionesString;?>'+'">'+'&emsp;&emsp;<?php echo $rowI['opcion'];?>'+'</h3></div>'); 
                                     });
                                     </script>
                                 <?php
@@ -185,6 +195,27 @@
                         }
                         include("cerrar_conexion.php");
                     ?>
+                    <script>
+                         $(document).ready(function() {
+                            $('input[type="image"]').click(function() {
+                                var buttonName = $(this).attr('name');
+                                //alert(buttonName);
+                                var ultimoElemento = buttonName[buttonName.length-1];
+                                var nombrePregunta = $("#contPreg" + ultimoElemento).text(); 
+                                //alert(nombrePregunta);
+                                $.ajax({
+                                    url: "eliminarPregunta.php", // php file path
+                                    type: "POST", // send data method
+                                    data: ({nombrePreg: nombrePregunta}),
+                                    success: function(data){ 
+                                        alert(data);
+                                
+                                } // response of ajax
+                            });
+                        });
+                    });
+                        
+                    </script>
                 </div>
                 <div id="container">
 

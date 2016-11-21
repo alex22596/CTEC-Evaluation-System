@@ -113,7 +113,6 @@
                     </script>
                 </div>
             <div>
-
                     <?php
                         include("abrir_conexion.php");
                         $contador = 0;
