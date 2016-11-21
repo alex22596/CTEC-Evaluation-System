@@ -75,19 +75,14 @@
                                 <option>Escala</option>
                             </select>
                         </div>
-                         <div class="form-group">                         
-                            <input type="name" class="form-control" name="opcion1" placeholder="Opcion 1">
-                        </div>
-                        <div class="form-group">                         
-                            <input type="name" class="form-control" name="opcion2" placeholder="Opcion 2">
-                        </div>
-                        <div class="form-group">                         
-                            <input type="name" class="form-control" name="opcion3" placeholder="Opcion 3">
-                        </div>
-                        <div class="form-group">                         
-                            <input type="name" class="form-control" name="opcion4" placeholder="Opcion 4">
-                        </div>
-                        <br>
+                         <div class="row">
+                                <div class="form-group col-md-10">
+                                    <input type="text" class="form-control" id="nombreServicio" placeholder="Ingrese Opciones">
+                                </div>
+                                <div class= "col-md-2">
+                                    <input type="button" class="btn btn-success" value="Añadir opcion"  id="añadirServicio"> 
+                                </div>   
+                            </div>
                         <input type="submit" class="btn btn-info" name ="crearPregunta" value="Crear Pregunta"></input>
                     </form>
                     <?php

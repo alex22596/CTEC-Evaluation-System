@@ -73,14 +73,18 @@
                         <?php
                         $resultadoI = mysqli_query($conexion,"SELECT * FROM evaluacion INNER JOIN instalacion ON instalacion.id = evaluacion.instalacion_id INNER JOIN pregunta ON pregunta.id = evaluacion.pregunta_id INNER JOIN respuesta ON respuesta.evaluacion_id = evaluacion.id where evaluacion.instalacion_id = '$idInsta'&& evaluacion.pregunta_id = pregunta.id");
                         while($rowI = mysqli_fetch_array($resultadoI)){
-                            ?>
-                            <script> 
-                                $(function(){
-                                    $("#container").append('<div><h3>'+ '<?php echo $rowI['contenido']; ?>'+'</h3></div>'); 
-                                    $("#container").append('<div><h5>'+ '<?php echo $rowI['opcion']; ?>'+'</h5></div>'); 
-                                });
-                            </script>
-                            <?php
+                            $idOpcion = $rowI['opcion_id'];
+                            $resultadoII = mysqli_query($conexion,"SELECT * FROM opciones where id = '$idOpcion'");
+                            while($rowII = mysqli_fetch_array($resultadoII)){
+                                ?>
+                                <script> 
+                                    $(function(){
+                                        $("#container").append('<div><h3>'+ '<?php echo $rowI['contenido']; ?>'+'</h3></div>'); 
+                                        $("#container").append('<div><h5>'+ '<?php echo $rowII['opcion']; ?>'+'</h5></div>'); 
+                                    });
+                                </script>
+                                <?php
+                            }
                         }
                     }
                     include("cerrar_conexion.php");
