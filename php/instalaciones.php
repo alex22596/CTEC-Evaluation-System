@@ -83,19 +83,31 @@
                             $( "#añadirServicio" ).click(function() {
                                 var nombreServicio = $("#nombreServicio").val(); 
                                 listaServicios.push(nombreServicio); //anadir nuevos elementos.
+                                $("#nombreServicio").val(''); 
+                                
                             });
                             $( "#crearInstalacionBoton" ).click(function() {
                                 var nombreInst = $("#nombreInst").val(); 
-                                var listaServiciosString = listaServicios.toString(); // result: a,b,c
-                                //$('#nombreInstalacion').val('');
-                                $.ajax({
-                                    url: "anadir.php", // php file path
-                                    type: "POST", // send data method
-                                    data: ({nombreInst: nombreInst, listaServ: listaServiciosString}),
-                                    success: function(data){
-                                        
-                                    } // response of ajax
-                                });
+                                if((nombreInst.length != 0) && (listaServicios.length != 0)){
+                                    var listaServiciosString = listaServicios.toString(); // result: a,b,c
+                                    $.ajax({
+                                        url: "anadir.php", // php file path
+                                        type: "POST", // send data method
+                                        data: ({nombreInst: nombreInst, listaServ: listaServiciosString}),
+                                        success: function(data){
+                                            
+                                        } // response of ajax
+                                    });
+                                }
+                                else if((nombreInst.length == 0) && (listaServicios.length != 0)){
+                                    alert("Debe de Ingresar el Nombre de una Instalación.");
+                                }
+                                else if((nombreInst.length != 0) && (listaServicios.length == 0)){
+                                    alert("Debe de Ingresar al Menos un Servicio.");
+                                }
+                                else{
+                                    alert("No puede dejar campos vacios.");
+                                }
                             });
                         });
                     </script>
