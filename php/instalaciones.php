@@ -142,10 +142,10 @@
                                 ?>
                                 <script> 
                                     $(function(){
-                                        $('#servicios'+'<?php echo $contador2; ?>'+'').prepend('<div id="containerServicios'+'<?php echo $contadorServiciosString;?>'+'" class="row"></div>'); 
-                                        $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><h3 id="nombreServicio'+'<?php echo $contador2;?>'+'">'+'&emsp;&emsp;<?php echo $rowI['servicio'];?>'+'</h3></div>'); 
-                                        $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/edit.png" name="modificarServicio'+'<?php echo $contador2;?>'+'"></form></div>'); 
-                                        $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarServicio'+'<?php echo $contador2;?>'+'"></form></div>');
+                                        $('#servicios'+'<?php echo $contador2; ?>'+'').append('<div id="containerServicios'+'<?php echo $contadorServiciosString;?>'+'" class="row"></div>'); 
+                                        $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><h3 id="nombreServicio'+'<?php echo $contadorServiciosString;?>'+'">'+'&emsp;&emsp;<?php echo $rowI['servicio'];?>'+'</h3></div>'); 
+                                        $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/edit.png" name="modificarServicio'+'<?php echo $contadorServiciosString;?>'+'"></form></div>'); 
+                                        $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarServicio'+'<?php echo $contadorServiciosString;?>'+'"></form></div>');
                                     });
                                 </script>
                             <?php
@@ -164,7 +164,6 @@
                         var esInstalacion = buttonName.substring(0,buttonName.length -1);
 
                         var ultimoElemento = buttonName[buttonName.length-1];
-                        
                         if(esInstalacion == "modificarInstalacion" || esInstalacion == "eliminarInstalacion"){
                             var concatenarNombreInstalacion = "#nombreInstalacion".concat(ultimoElemento);
                             var nombreInstalacion = $(concatenarNombreInstalacion).text(); 
@@ -173,8 +172,7 @@
                                     url: "prueba.php", // php file path
                                     type: "POST", // send data method
                                     data: ({nombreInstalacion: nombreInstalacion, esInstalacion: true, esModificar: false}),
-                                    success: function(data){
-                                          
+                                    success: function(data){    
                                     } // response of ajax
                                 });
                             }
@@ -183,13 +181,15 @@
                                     url: "prueba.php", // php file path
                                     type: "POST", // send data method
                                     data: ({nombreInstalacion: nombreInstalacion, esInstalacion: true, esModificar: true}),
-                                    success: function(data){
-                                        
+                                    success: function(data){  
                                     } // response of ajax
                                 });
                             }
                         }
                         else{
+                            var concatenarNombreInstalacion = "#nombreInstalacion".concat(ultimoElemento);
+                            var nombreInstalacion1 = $(concatenarNombreInstalacion).text(); 
+                            alert(nombreInstalacion1)
                             var concatenarNombreServicio = "#nombreServicio".concat(ultimoElemento);
                             var nombreServicio = $(concatenarNombreServicio).text(); 
                             var res = nombreServicio.replace("  ", "");
@@ -197,9 +197,9 @@
                                 $.ajax({
                                 url: "prueba.php", // php file path
                                 type: "POST", // send data method
-                                data: ({nombreInstalacion: res, esInstalacion: false, esModificar: false}),
-                                success: function(data){
-                                     
+                                data: ({nombreInstalacion: nombreInstalacion1,nombreServicio:res, esInstalacion: false, esModificar: false}),
+                                success: function(data){ 
+                                    alert(data); 
                                 } // response of ajax
                             });
                             }
@@ -208,8 +208,8 @@
                                 url: "prueba.php", // php file path
                                 type: "POST", // send data method
                                 data: ({nombreInstalacion: res, esInstalacion: false, esModificar: true}),
-                                success: function(data){
-                                     
+                                success: function(data){ 
+                                    alert(data); 
                                 } // response of ajax
                             });
                             }
