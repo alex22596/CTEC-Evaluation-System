@@ -117,6 +117,7 @@
                     <?php
                         include("abrir_conexion.php");
                         $contador = 0;
+                        $contadorServicios = 0;
                         $resultado = mysqli_query($conexion,"SELECT * FROM instalacion"); 
                         while($row = mysqli_fetch_array($resultado)){   
                            $contador+=1;
@@ -130,18 +131,21 @@
                                 $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h2 id="nombreInstalacion'+'<?php echo $contador2;?>'+'">'+'<?php echo $row['nombre']; ?>'+'</h2></div>'); 
                                 $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/edit.png" name="modificarInstalacion'+'<?php echo $contador2;?>'+'"></form></div>'); 
                                 $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarInstalacion'+'<?php echo $contador2;?>'+'"></form></div>');
+                                $('#prueba'+'<?php echo $contador2; ?>'+'').append('<div id="servicios'+'<?php echo $contador2;?>'+'" class="row"></div>');   
                             });
                             </script>
                            <?php
                            $resultadoI = mysqli_query($conexion,"SELECT * FROM servicios Where instalacion_id = '".$id."' ");
                             while($rowI = mysqli_fetch_array($resultadoI)){ 
+                                $contadorServicios+=1;
+                                $contadorServiciosString = strval($contadorServicios);
                                 ?>
                                 <script> 
                                     $(function(){
-                                        $('#prueba'+'<?php echo $contador2; ?>'+'').append('<div id="servicio'+'<?php echo $contador2;?>'+'" class="row"></div>');   
-                                        $('#servicio'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h3 id="nombreServicio'+'<?php echo $contador2;?>'+'">'+'&emsp;&emsp;<?php echo $rowI['servicio'];?>'+'</h3></div>'); 
-                                        $('#servicio'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/edit.png" name="modificarServicio'+'<?php echo $contador2;?>'+'"></form></div>'); 
-                                        $('#servicio'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarServicio'+'<?php echo $contador2;?>'+'"></form></div>');
+                                        $('#servicios'+'<?php echo $contador2; ?>'+'').prepend('<div id="containerServicios'+'<?php echo $contadorServiciosString;?>'+'" class="row"></div>'); 
+                                        $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><h3 id="nombreServicio'+'<?php echo $contador2;?>'+'">'+'&emsp;&emsp;<?php echo $rowI['servicio'];?>'+'</h3></div>'); 
+                                        $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/edit.png" name="modificarServicio'+'<?php echo $contador2;?>'+'"></form></div>'); 
+                                        $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarServicio'+'<?php echo $contador2;?>'+'"></form></div>');
                                     });
                                 </script>
                             <?php
