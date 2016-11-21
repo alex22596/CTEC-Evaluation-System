@@ -187,29 +187,39 @@
                             }
                         }
                         else{
-                            var concatenarNombreInstalacion = "#nombreInstalacion".concat(ultimoElemento);
-                            var nombreInstalacion1 = $(concatenarNombreInstalacion).text(); 
-                            alert(nombreInstalacion1)
+                            var parentObjetivo;
+                            var parentEls = $(this).parents()
+                            .map(function() {
+                                if(this.id.includes("prueba")){
+                                    parentObjetivo = this.id;
+                                }
+                            });
+                            var numeroInstalacion = parentObjetivo[parentObjetivo.length - 1];
+                            var nombreInstalacion = $("#nombreInstalacion" + numeroInstalacion).text(); 
+                            //alert(nombreInstalacion);
+                            //alert(nombreInstalacion1)
                             var concatenarNombreServicio = "#nombreServicio".concat(ultimoElemento);
                             var nombreServicio = $(concatenarNombreServicio).text(); 
                             var res = nombreServicio.replace("  ", "");
+                            //alert(res);
                             if(buttonName[0] == "e"){
                                 $.ajax({
-                                url: "prueba.php", // php file path
-                                type: "POST", // send data method
-                                data: ({nombreInstalacion: nombreInstalacion1,nombreServicio:res, esInstalacion: false, esModificar: false}),
-                                success: function(data){ 
-                                    alert(data); 
+                                    url: "prueba.php", // php file path
+                                    type: "POST", // send data method
+                                    data: ({nombreInstalacion: nombreInstalacion, nombreServicio: res, esInstalacion: false, esModificar: false}),
+                                    success: function(data){ 
+                                        alert(data);
+                                  
                                 } // response of ajax
                             });
                             }
                             else{
-                                $.ajax({
-                                url: "prueba.php", // php file path
-                                type: "POST", // send data method
-                                data: ({nombreInstalacion: res, esInstalacion: false, esModificar: true}),
-                                success: function(data){ 
-                                    alert(data); 
+                               $.ajax({
+                                    url: "prueba.php", // php file path
+                                    type: "POST", // send data method
+                                    data: ({nombreInstalacion: res, esInstalacion: false, esModificar: true}),
+                                    success: function(data){ 
+            
                                 } // response of ajax
                             });
                             }
