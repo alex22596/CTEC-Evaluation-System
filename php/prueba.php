@@ -18,7 +18,5 @@
                 include("cerrar_conexion.php");
             }
             header("refresh:0; url=instalaciones.php");
-            
         }
-        
     ?>
