@@ -65,49 +65,95 @@
                 <div class="container center" id="showCreateInstallation">
                     <form clas ="" method="POST" action="preguntas.php">
                         <div class="form-group">
-                            <input type="name" class="form-control" name="contenido" placeholder="Ingresa el Contenido de la Pregunta">
+                            <input type="name" class="form-control" id="contenidoPregunta" placeholder="Ingresa el Contenido de la Pregunta">
                         </div>
                         <div class="form-group">
-                            <select  name ="tipo" class="form-control">
+                            <select  id ="tipoPregunta" class="form-control">
                                 <option>Escoja el tipo de pregunta</option>
                                 <option>Seleccion Unica</option>
                                 <option>Seleccion Multiple</option>
                                 <option>Escala</option>
                             </select>
                         </div>
-                         <div class="row">
+                         <div class="row" id="op" hidden>
                                 <div class="form-group col-md-10">
-                                    <input type="text" class="form-control" id="nombreServicio" placeholder="Ingrese Opciones">
+                                    <input type="text" class="form-control" id="opcionesPregunta" placeholder="Ingrese Opciones">
                                 </div>
                                 <div class= "col-md-2">
-                                    <input type="button" class="btn btn-success" value="Añadir opcion"  id="añadirServicio"> 
+                                    <input type="button" class="btn btn-success" value="Añadir opcion"  id="añadirOpción"> 
                                 </div>   
                             </div>
-                        <input type="submit" class="btn btn-info" name ="crearPregunta" value="Crear Pregunta"></input>
+                        <input type="button" class="btn btn-info" id ="crearPregunta" value="Crear Pregunta"></input>
                     </form>
-                    <?php
-                    if(isset($_POST['crearPregunta']))
-                    {
-                      include("abrir_conexion.php");
-                      
-                      $contenido = $_POST['contenido'];
-                      $tipo = $_POST['tipo'];
-                      $opcion1 = $_POST['opcion1'];
-                      $opcion2 = $_POST['opcion2'];
-                      $opcion3 = $_POST['opcion3'];
-                      $opcion4 = $_POST['opcion4'];
-                      mysqli_query($conexion, "INSERT INTO pregunta (contenido,tipo) VALUES ('$contenido','$tipo')");
-                      $resultado = mysqli_query($conexion, "SELECT id FROM pregunta WHERE contenido = '$contenido'");
-                      while($row = mysqli_fetch_array($resultado)){
-                            $id = $row['id'];
-                            mysqli_query($conexion, "INSERT INTO opciones (opcion,pregunta_id) VALUES ('$opcion1','$id')");
-                            mysqli_query($conexion, "INSERT INTO opciones (opcion,pregunta_id) VALUES ('$opcion2','$id')");
-                            mysqli_query($conexion, "INSERT INTO opciones (opcion,pregunta_id) VALUES ('$opcion3','$id')");
-                            mysqli_query($conexion, "INSERT INTO opciones (opcion,pregunta_id) VALUES ('$opcion4','$id')");                 
-                      }
-                      include("cerrar_conexion.php");  
-                    }
-                    ?>
+                    <script>
+                        $(function(){
+                            var listaOpciones = [];
+
+                            $('#tipoPregunta').change(function(){
+                                var tipoPregunta = $("#tipoPregunta").val();
+                                if(tipoPregunta != "Seleccion Unica" && tipoPregunta != "Seleccion Multiple"){
+                                    $( "#op" ).hide();
+                                }
+                                else{
+                                     $( "#op" ).show();
+                                }
+
+                            });
+                            $( "#añadirOpción" ).click(function() {
+                                var opcionesPregunta = $("#opcionesPregunta").val(); 
+                                if(listaOpciones.length < 4 && opcionesPregunta.length != 0){
+                                    listaOpciones.push(opcionesPregunta); //anadir nuevos elementos.
+                                }
+                                else  if(listaOpciones.length < 4 && opcionesPregunta.length == 0){
+                                    alert("Debe de Ingresar una Opción.");
+                                }
+                                else{
+                                    alert("No Puede Ingresar Más de 4 Opciones.");
+                                }
+                                $("#opcionesPregunta").val('');
+                            });
+                            $( "#crearPregunta" ).click(function() {
+                                var tipoPregunta = $("#tipoPregunta").val();
+                                var contenidoPregunta = $("#contenidoPregunta").val();
+                                if(contenidoPregunta.length == 0){
+                                    alert("Debe de Ingresar el Contenido de la Pregunta.")
+                                }
+                                else{
+                                    if((tipoPregunta == "Seleccion Unica" || tipoPregunta == "Seleccion Multiple") && 
+                                        (listaOpciones.length == 4)){
+                                        var listaOpcionesString = listaOpciones.toString(); // result: a,b,c    
+                                        $.ajax({
+                                            url: "anadirPregunta.php", // php file path
+                                            type: "POST", // send data method
+                                            data: ({contenidoPreg: contenidoPregunta, tipoPreg: tipoPregunta, listaOpcString: listaOpcionesString}),
+                                            success: function(data){
+                                                alert(data);
+                                            } // response of ajax
+                                        });
+                                    }
+                                    else if((tipoPregunta == "Seleccion Unica" || tipoPregunta == "Seleccion Multiple") && 
+                                        (listaOpciones.length != 4)){
+                                            alert("Debe de Ingresar 4 Opciones.");
+                                    }
+                                    else if(tipoPregunta == "Escoja el tipo de pregunta"){
+                                        alert("Debe de Escoger el Tipo de Pregunta.");
+                                    }
+                                    else if(tipoPregunta == "Escala"){
+                                        var listaEscala = "1,2,3,4,5";
+                                        $.ajax({
+                                            url: "anadirPregunta.php", // php file path
+                                            type: "POST", // send data method
+                                            data: ({contenidoPreg: contenidoPregunta, tipoPreg: tipoPregunta, listaOpcString: listaEscala}),
+                                            success: function(data){
+                                                 alert(data);
+                                                
+                                            } // response of ajax
+                                        });
+                                    }
+                                }
+                            });
+                        });
+                    </script>
                 </div>
                 <div>
                     <?php
