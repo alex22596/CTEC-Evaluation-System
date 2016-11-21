@@ -41,7 +41,61 @@
         </header>
         <!--/#header-->
         <section>
-            <div class="container center">
+            <div class="container">
+                <?php
+                    include("abrir_conexion.php");
+                    $contador = 0;
+                    $contadorServicios = 0;
+                    $resultado = mysqli_query($conexion,"SELECT DISTINCT instalacion_id,nombre FROM instalacion INNER JOIN evaluacion ON evaluacion.instalacion_id = instalacion.id WHERE evaluacion.instalacion_id = 25");
+                    while($row = mysqli_fetch_array($resultado)){                    
+                        $idInsta =  $row['instalacion_id']; 
+                        $resultadoI = mysqli_query($conexion,"SELECT * FROM evaluacion INNER JOIN instalacion ON instalacion.id = evaluacion.instalacion_id INNER JOIN pregunta ON pregunta.id = evaluacion.pregunta_id where evaluacion.instalacion_id = '$idInsta'&& evaluacion.pregunta_id = pregunta.id");
+                        while($rowI = mysqli_fetch_array($resultadoI)){
+                            $idPregu = $rowI['pregunta_id'];
+                            $contenido = $rowI['contenido'];
+                            $tipo = $rowI['tipo'];
+                            $contador+=1;
+                            $contador2 = strval($contador);
+                            ?>
+                            <script> 
+                            $(function(){
+                                $("#container").prepend('<div id="prueba'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
+                                $('#prueba'+'<?php echo $contador2;?>'+'').append('<div id="instalacion'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
+                                $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h2 id="nombreInstalacion'+'<?php echo $contador2;?>'+'">'+'<?php echo $contenido; ?>'+'</h2></div>'); 
+                                $('#prueba'+'<?php echo $contador2; ?>'+'').append('<div id="servicios'+'<?php echo $contador2;?>'+'" class="row"></div>');   
+                            });
+                            </script>
+                            <?php
+                            $resultadoII = mysqli_query($conexion,"SELECT opcion  FROM opciones INNER JOIN pregunta ON pregunta.id = opciones.pregunta_id WHERE pregunta.id = '$idPregu'");
+                            while($rowII = mysqli_fetch_array($resultadoII)){
+                                $contadorServicios+=1;
+                                $contadorServiciosString = strval($contadorServicios);
+                                ?>
+                                <script> 
+                                    $(function(){
+                                        $('#servicios'+'<?php echo $contador2; ?>'+'').append('<div id="containerServicios'+'<?php echo $contadorServiciosString;?>'+'" class="row"></div>'); 
+                                        $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><h3 id="nombreServicio'+'<?php echo $contadorServiciosString;?>'+'">'+'&emsp;&emsp;<?php echo $rowII['opcion'];?>'+'</h3></div>'); 
+                                    });
+                                </script>   
+                                <?php
+                            }
+                            //$contador+=1;
+                            //$contador2 = strval($contador);
+                            /*?>
+                            <script> 
+                            $(function(){
+                                $("#container").prepend('<div id="prueba'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
+                                $('#prueba'+'<?php echo $contador2;?>'+'').append('<div id="instalacion'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
+                                $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h2 id="nombreInstalacion'+'<?php echo $contador2;?>'+'">'+'<?php echo $contenido; ?>'+'</h2></div>'); 
+                                $('#prueba'+'<?php echo $contador2; ?>'+'').append('<div id="servicios'+'<?php echo $contador2;?>'+'" class="row"></div>');   
+                            });
+                            </script>
+                            <?php*/
+                        }
+                        
+                    }
+                ?>
+                <div id="container" class="container"></div>
                 
             </div>
         </section>

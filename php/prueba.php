@@ -4,8 +4,6 @@
             $nombreServ = $_POST['nombreServicio'];
             $esInst = $_POST['esInstalacion'];
             $esModifi = $_POST['esModificar'];
-            echo $nombreServ;
-            echo $nombreInstalacion;
             if(($esInst == "true")&&($esModifi == "false")){
                 include("abrir_conexion.php");
                 $resultado = mysqli_query($conexion,"SELECT id FROM instalacion WHERE nombre = '$nombreInstalacion'"); 
