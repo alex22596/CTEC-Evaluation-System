@@ -97,7 +97,6 @@
                                         
                                     } // response of ajax
                                 });
-
                             });
                         });
                     </script>
