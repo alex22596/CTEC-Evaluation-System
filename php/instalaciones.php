@@ -63,7 +63,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <input type="text" class="form-control" id="nombreInstalacion" placeholder="Ingresa el nombre de la Instalación">
+                                    <input type="text" class="form-control" id="nombreInst" placeholder="Ingresa el nombre de la Instalación">
                                 </div>
                             </div>
                              <div class="row">
@@ -71,15 +71,36 @@
                                     <input type="text" class="form-control" id="nombreServicio" placeholder="Ingresa el nombre del servicio">
                                 </div>
                                 <div class= "col-md-2">
-                                    <input type="button" class="btn btn-success" value="Añadir Servicio"> 
+                                    <input type="button" class="btn btn-success" value="Añadir Servicio"  id="añadirServicio"> 
                                 </div>   
                             </div>
                         </div>
                         <input type="submit" class="btn btn-info" id="crearInstalacionBoton" value="Crear Instalación"></input>
                     </form>
-                    <?php
-                        
-                    ?>
+                    <script>
+                        $(function(){
+                            var listaServicios = [];
+                            $( "#añadirServicio" ).click(function() {
+                                var nombreServicio = $("#nombreServicio").val(); 
+                                listaServicios.push(nombreServicio); //anadir nuevos elementos.
+                            });
+                            $( "#crearInstalacionBoton" ).click(function() {
+                                var nombreInst = $("#nombreInst").val(); 
+                                var listaServiciosString = listaServicios.toString(); // result: a,b,c
+                                //$('#nombreInstalacion').val('');
+                                $.ajax({
+                                    url: "anadir.php", // php file path
+                                    type: "POST", // send data method
+                                    data: ({nombreInst: nombreInst, listaServ: listaServiciosString}),
+                                    success: function(data){
+                                        alert(data);
+                                        
+                                    } // response of ajax
+                                });
+
+                            });
+                        });
+                    </script>
                 </div>
             <div>
 
