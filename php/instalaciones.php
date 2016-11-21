@@ -93,7 +93,6 @@
                                     type: "POST", // send data method
                                     data: ({nombreInst: nombreInst, listaServ: listaServiciosString}),
                                     success: function(data){
-                                        alert(data);
                                         
                                     } // response of ajax
                                 });
