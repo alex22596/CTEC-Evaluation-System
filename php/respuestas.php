@@ -61,13 +61,14 @@
             <div class="container">
                 <?php
                     include("abrir_conexion.php");
-                    $resultado = mysqli_query($conexion,"SELECT * FROM instalacion INNER JOIN evaluacion ON evaluacion.instalacion_id = instalacion.id");
+                    $resultado = mysqli_query($conexion,"SELECT DISTINCT instalacion_id,nombre FROM instalacion INNER JOIN evaluacion ON evaluacion.instalacion_id = instalacion.id");
                     while($row = mysqli_fetch_array($resultado)){                    
                         $idInsta =  $row['instalacion_id'];
                         ?>
                         <script> 
                             $(function(){
-                                $("#container").append('<div><h2>'+ '<?php echo $row['nombre']; ?>'+'</h2></div>');
+                                $("#container").append('<div><h1>'+ '<?php echo $row['nombre']; ?>'+'</h1></div>');
+                                $("#container").append('<div><h2>Cuestionario</h2></div>');
                             });
                         </script>
                         <?php
