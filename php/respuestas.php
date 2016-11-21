@@ -61,9 +61,9 @@
             <div class="container">
                 <?php
                     include("abrir_conexion.php");
-                    $resultado = mysqli_query($conexion,"SELECT * FROM instalacion");
+                    $resultado = mysqli_query($conexion,"SELECT * FROM instalacion INNER JOIN evaluacion ON evaluacion.instalacion_id = instalacion.id");
                     while($row = mysqli_fetch_array($resultado)){                    
-                        $idInsta =  $row['id'];
+                        $idInsta =  $row['instalacion_id'];
                         ?>
                         <script> 
                             $(function(){
