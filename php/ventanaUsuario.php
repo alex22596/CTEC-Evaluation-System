@@ -46,7 +46,7 @@
                     include("abrir_conexion.php");
                     $contador = 0;
                     $contadorServicios = 0;
-                    $resultado = mysqli_query($conexion,"SELECT DISTINCT instalacion_id,nombre FROM instalacion INNER JOIN evaluacion ON evaluacion.instalacion_id = instalacion.id WHERE evaluacion.instalacion_id = 25");
+                    $resultado = mysqli_query($conexion,"SELECT DISTINCT instalacion_id,nombre FROM instalacion INNER JOIN evaluacion ON evaluacion.instalacion_id = instalacion.id WHERE evaluacion.instalacion_id = 43");
                     while($row = mysqli_fetch_array($resultado)){                    
                         $idInsta =  $row['instalacion_id']; 
                         $resultadoI = mysqli_query($conexion,"SELECT * FROM evaluacion INNER JOIN instalacion ON instalacion.id = evaluacion.instalacion_id INNER JOIN pregunta ON pregunta.id = evaluacion.pregunta_id where evaluacion.instalacion_id = '$idInsta'&& evaluacion.pregunta_id = pregunta.id");

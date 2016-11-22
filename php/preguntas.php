@@ -127,7 +127,6 @@
                                             type: "POST", // send data method
                                             data: ({contenidoPreg: contenidoPregunta, tipoPreg: tipoPregunta, listaOpcString: listaOpcionesString}),
                                             success: function(data){
-                                                alert(data);
                                             } // response of ajax
                                         });
                                     }
@@ -145,8 +144,6 @@
                                             type: "POST", // send data method
                                             data: ({contenidoPreg: contenidoPregunta, tipoPreg: tipoPregunta, listaOpcString: listaEscala}),
                                             success: function(data){
-                                                 alert(data);
-                                                
                                             } // response of ajax
                                         });
                                     }
@@ -208,8 +205,6 @@
                                     type: "POST", // send data method
                                     data: ({nombrePreg: nombrePregunta}),
                                     success: function(data){ 
-                                        alert(data);
-                                
                                 } // response of ajax
                             });
                         });

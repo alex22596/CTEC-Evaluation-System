@@ -8,10 +8,11 @@
         $resultado = mysqli_query($conexion, "SELECT id FROM instalacion WHERE nombre = '$nombreInstalacion'");
         while($row = mysqli_fetch_array($resultado)){
             $id = $row['id'];
-            foreach ($arrayListaServicios as $valor)
+            foreach ($arrayListaServicios as $valor){
                 mysqli_query($conexion, "INSERT INTO servicios (servicio,instalacion_id) VALUES ('$valor','$id')");
             }               
         }
         include("cerrar_conexion.php");
         header("refresh:0; url=instalaciones.php");
+    }
 ?>
