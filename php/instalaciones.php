@@ -126,7 +126,7 @@
                            <script> 
                             $(function(){
                                 $("#container").prepend('<div id="prueba'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
-                                $('#prueba'+'<?php echo $contador2;?>'+'').append('<div id="instalacion'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
+                                $('#prueba'+'<?php echo $contador2;?>'+'').append('<div id="instalacion'+'<?php echo $contador2;?>'+'" class="row vcenter"></div>'); 
                                 $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h2 id="nombreInstalacion'+'<?php echo $contador2;?>'+'">'+'<?php echo $row['nombre']; ?>'+'</h2></div>'); 
                                 $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/edit.png" name="modificarInstalacion'+'<?php echo $contador2;?>'+'"></form></div>'); 
                                 $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarInstalacion'+'<?php echo $contador2;?>'+'"></form></div>');
@@ -141,7 +141,7 @@
                                 ?>
                                 <script> 
                                     $(function(){
-                                        $('#servicios'+'<?php echo $contador2; ?>'+'').append('<div id="containerServicios'+'<?php echo $contadorServiciosString;?>'+'" class="row"></div>'); 
+                                        $('#servicios'+'<?php echo $contador2; ?>'+'').append('<div class= "vcenter" id="containerServicios'+'<?php echo $contadorServiciosString;?>'+'" class="row"></div>'); 
                                         $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><h3 id="nombreServicio'+'<?php echo $contadorServiciosString;?>'+'">'+'&emsp;&emsp;<?php echo $rowI['servicio'];?>'+'</h3></div>'); 
                                         $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/edit.png" name="modificarServicio'+'<?php echo $contadorServiciosString;?>'+'"></form></div>'); 
                                         $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/delete.png" name="eliminarServicio'+'<?php echo $contadorServiciosString;?>'+'"></form></div>');

@@ -170,7 +170,7 @@
                            <script> 
                             $(function(){
                                 $("#container").append('<div id="prueba'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
-                                $('#prueba'+'<?php echo $contador2;?>'+'').append('<div id="containerContPregunta'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
+                                $('#prueba'+'<?php echo $contador2;?>'+'').append('<div class="row vcenter" id="containerContPregunta'+'<?php echo $contador2;?>'+'"></div>'); 
                                 
                                 $('#containerContPregunta'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h2 id="contPreg'+'<?php echo $contador2;?>'+'">'+'<?php echo $row['contenido']; ?>'+'</h2></div>'); 
                                 $('#containerContPregunta'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><form method="post"><input type="image" src="../images/edit.png" name="modificarContenidoPreg'+'<?php echo $contador2;?>'+'"></form></div>'); 
@@ -186,7 +186,7 @@
                                 ?>
                                 <script> 
                                     $(function(){
-                                        $('#opcionesPregunta'+'<?php echo $contador2; ?>'+'').append('<div id="containerOpciones'+'<?php echo $contadorOpcionesString;?>'+'" class="row"></div>'); 
+                                        $('#opcionesPregunta'+'<?php echo $contador2; ?>'+'').append('<div class="vcenter" id="containerOpciones'+'<?php echo $contadorOpcionesString;?>'+'" class="row"></div>'); 
                                         $('#containerOpciones'+'<?php echo $contadorOpcionesString; ?>'+'').append('<div class="col-md-4"><h3 id="nombreOpcion'+'<?php echo $contadorOpcionesString;?>'+'">'+'&emsp;&emsp;<?php echo $rowI['opcion'];?>'+'</h3></div>'); 
                                     });
                                     </script>
