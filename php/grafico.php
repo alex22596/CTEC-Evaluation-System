@@ -30,52 +30,73 @@
 <body>
     <div class="page-wrap">
         <header id="header">
-            <div class="navbar navbar-inverse" role="banner">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a class="navbar-brand">
-                            <h1><img src="../images/logo1.png" alt="logo"></h1>
-                        </a>
+                <div class="navbar navbar-inverse" role="banner">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand">
+                                <h1><img src="../images/logo1.png" alt="logo"></h1>
+                            </a>
+                        </div>
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="active"><a href="../php/instalaciones.php">Instalaciones</a></li>
+                                <li class="active"><a href="../php/cuestionarios.php">Cuestionarios</a></li>
+                                <li class="active"><a href="../php/preguntas.php">Preguntas</a></li>
+                                <li class="active"><a href="../php/respuestas.php">Respuestas</a></li>
+                                <li class="active"><a href="#">Enviar Cuestionario</a></li>
+                                <li class="active"><a href="../php/grafico.php">Generar Reporte</a></li>
+                                <li class="active"><a href="../php/login.php">Cerrar Sesión</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-        </header>
+            </header>
         <!--/#header-->
         <section>
-        <script src="../js/Chart.js"></script>
-        <div id="canvas-holder">
-        <canvas id="chart-area" width="300" height="300"></canvas>
-        <canvas id="chart-area2" width="300" height="300"></canvas>
-        <canvas id="chart-area3" width="600" height="300"></canvas>
-        <canvas id="chart-area4" width="600" height="300"></canvas>
-        </div>
-        <script>
-        var pieData = [{value: 50,color:"#0b82e7",highlight: "#0c62ab",label: "Auditorio"},
-                        {
-                            value: 15,
-                            color: "#eb5d82",
-                            highlight: "#b74865",
-                            label: "Jacaranda"
-                        },
-                        {
-                            value: 15,
-                            color: "#5ae85a",
-                            highlight: "#42a642",
-                            label: "Bromelia"
-                        },
-                        {
-                            value: 20,
-                            color: "#e965db",
-                            highlight: "#a6429b",
-                            label: "Tecno-Aula1"
-                        }
-                    ];
+            <div>
+                 <script src="../js/Chart.js"></script>
+                    <div id="canvas-holder">
+                    <canvas id="chart-area" width="300" height="300"></canvas>
+                    <canvas id="chart-area2" width="300" height="300"></canvas>
+                    <canvas id="chart-area3" width="600" height="300"></canvas>
+                    <canvas id="chart-area4" width="600" height="300"></canvas>
+                    </div>
+                    <script>
+                    var pieData = [{value: 50,color:"#0b82e7",highlight: "#0c62ab",label: "Auditorio"},
+                                    {
+                                        value: 15,
+                                        color: "#eb5d82",
+                                        highlight: "#b74865",
+                                        label: "Jacaranda"
+                                    },
+                                    {
+                                        value: 15,
+                                        color: "#5ae85a",
+                                        highlight: "#42a642",
+                                        label: "Bromelia"
+                                    },
+                                    {
+                                        value: 20,
+                                        color: "#e965db",
+                                        highlight: "#a6429b",
+                                        label: "Tecno-Aula1"
+                                    }
+                                ];
 
-        var ctx = document.getElementById("chart-area").getContext("2d");
-        var ctx2 = document.getElementById("chart-area2").getContext("2d");
-        var ctx3 = document.getElementById("chart-area3").getContext("2d");
-        var ctx4 = document.getElementById("chart-area4").getContext("2d");
-        window.myPie = new Chart(ctx).Pie(pieData);	
-        </script>            
+                    var ctx = document.getElementById("chart-area").getContext("2d");
+                    var ctx2 = document.getElementById("chart-area2").getContext("2d");
+                    var ctx3 = document.getElementById("chart-area3").getContext("2d");
+                    var ctx4 = document.getElementById("chart-area4").getContext("2d");
+                    window.myPie = new Chart(ctx).Pie(pieData);	
+                </script>            
+            </div>
+       
         </section>
         </div>
         <footer class="site-footer">

@@ -50,7 +50,7 @@
                             <li class="active"><a href="../php/preguntas.php">Preguntas</a></li>
                             <li class="active"><a href="../php/respuestas.php">Respuestas</a></li>
                             <li class="active"><a href="#">Enviar Cuestionario</a></li>
-                            <li class="active"><a href="#">Generar Reporte</a></li>
+                            <li class="active"><a href="../php/grafico.php">Generar Reporte</a></li>
                             <li class="active"><a href="../php/login.php">Cerrar Sesión</a></li>
                         </ul>
                     </div>
