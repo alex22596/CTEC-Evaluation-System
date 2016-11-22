@@ -21,10 +21,12 @@
   }
 
 
-.pruebajeje{
-
-
+#centrarBot {
+    margin:0 auto;
+    display:block;
+    margin-bottom: 50px;
 }
+
 .vcenter {
   display: -ms-flexbox;
 	display: -webkit-flex;

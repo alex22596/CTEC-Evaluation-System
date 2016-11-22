@@ -10,11 +10,12 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="../css/animate.min.css" rel="stylesheet">
     <link href="../css/lightbox.css" rel="stylesheet">
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="../js/functionality.js">
 
@@ -46,6 +47,7 @@
                     include("abrir_conexion.php");
                     $contador = 0;
                     $contadorServicios = 0;
+                   // $contadorNameRadioButton = 1;
                     $resultado = mysqli_query($conexion,"SELECT DISTINCT instalacion_id,nombre FROM instalacion INNER JOIN evaluacion ON evaluacion.instalacion_id = instalacion.id WHERE evaluacion.instalacion_id = 43");
                     while($row = mysqli_fetch_array($resultado)){                    
                         $idInsta =  $row['instalacion_id']; 
@@ -59,10 +61,10 @@
                             ?>
                             <script> 
                             $(function(){
-                                $("#container").prepend('<div id="prueba'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
+                                $("#container").append('<div id="prueba'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
                                 $('#prueba'+'<?php echo $contador2;?>'+'').append('<div id="instalacion'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
                                 $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h2 id="nombreInstalacion'+'<?php echo $contador2;?>'+'">'+'<?php echo $contenido; ?>'+'</h2></div>'); 
-                                $('#prueba'+'<?php echo $contador2; ?>'+'').append('<div id="servicios'+'<?php echo $contador2;?>'+'" class="row"></div>');   
+                                $('#prueba'+'<?php echo $contador2; ?>'+'').append('<div id="opciones'+'<?php echo $contador2;?>'+'" class="row"></div>');   
                             });
                             </script>
                             <?php
@@ -73,30 +75,44 @@
                                 ?>
                                 <script> 
                                     $(function(){
-                                        $('#servicios'+'<?php echo $contador2; ?>'+'').append('<div id="containerServicios'+'<?php echo $contadorServiciosString;?>'+'" class="row"></div>'); 
-                                        $('#containerServicios'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-md-4"><h3 id="nombreServicio'+'<?php echo $contadorServiciosString;?>'+'">'+'&emsp;&emsp;<?php echo $rowII['opcion'];?>'+'</h3></div>'); 
+                                        $('#opciones'+'<?php echo $contador2; ?>'+'').append('<div id="containerOpciones'+'<?php echo $contadorServiciosString;?>'+'" class="row"></div>'); 
+                                        if('<?php echo $tipo; ?>' == "Escala"){
+                                           $('#containerOpciones'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-xs-12"><div class="btn-group btn-group-vertical" data-toggle="buttons"><label class="btn active"><input type="radio" checked value="'+'<?php echo $rowII['opcion']; ?>'+'" name="radioButton'+'<?php echo $contador2; ?>'+'"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span>'+'<?php echo $rowII['opcion']; ?>'+'</span></label></div></div>');
+                                        }
+                                        else{
+                                            if('<?php echo $tipo; ?>' == "Seleccion Unica"){
+                                                $('#containerOpciones'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-xs-12"><div class="btn-group btn-group-vertical" data-toggle="buttons"><label class="btn active"><input type="radio" checked value="'+'<?php echo $rowII['opcion']; ?>'+'" name="radioButton'+'<?php echo $contador2; ?>'+'"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span>'+'<?php echo $rowII['opcion']; ?>'+'</span></label></div></div>');
+                                            }
+                                            else{
+                                                 $('#containerOpciones'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-xs-12"><div class="btn-group btn-group-vertical" data-toggle="buttons"><label class="btn active"><input type="checkbox" name="checkBox'+'<?php echo $contadorServiciosString; ?>'+'"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i> <span>'+'<?php echo $rowII['opcion']; ?>'+'</span></label></div></div>');
+                                            }
+                                        } 
                                     });
                                 </script>   
                                 <?php
                             }
-                            //$contador+=1;
-                            //$contador2 = strval($contador);
-                            /*?>
-                            <script> 
-                            $(function(){
-                                $("#container").prepend('<div id="prueba'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
-                                $('#prueba'+'<?php echo $contador2;?>'+'').append('<div id="instalacion'+'<?php echo $contador2;?>'+'" class="row"></div>'); 
-                                $('#instalacion'+'<?php echo $contador2; ?>'+'').append('<div class="col-md-4"><h2 id="nombreInstalacion'+'<?php echo $contador2;?>'+'">'+'<?php echo $contenido; ?>'+'</h2></div>'); 
-                                $('#prueba'+'<?php echo $contador2; ?>'+'').append('<div id="servicios'+'<?php echo $contador2;?>'+'" class="row"></div>');   
-                            });
-                            </script>
-                            <?php*/
                         }
                         
                     }
+                    
                 ?>
+                <script>
+                    $(function(){
+                         $(document).on("click","input[name=radioButton2]:radio",function(){
+                            var x = $("input:radio[name=radioButton2]:checked").val();
+                            alert(x);
+                        });
+                    });
+
+                </script>
                 <div id="container" class="container"></div>
-                
+                <div class="container">
+                    <div clas="row">
+                        <div class="col-md-12">
+                              <input type="Button" class="btn btn-info" id="centrarBot" value="Enviar Formulario."></input>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         </div>
