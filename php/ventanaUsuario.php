@@ -77,11 +77,11 @@
                                     $(function(){
                                         $('#opciones'+'<?php echo $contador2; ?>'+'').append('<div id="containerOpciones'+'<?php echo $contadorServiciosString;?>'+'" class="row"></div>'); 
                                         if('<?php echo $tipo; ?>' == "Escala"){
-                                           $('#containerOpciones'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-xs-12"><div class="btn-group btn-group-vertical" data-toggle="buttons"><label class="btn active"><input type="radio" checked value="'+'<?php echo $rowII['opcion']; ?>'+'" name="radioButton'+'<?php echo $contador2; ?>'+'"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span>'+'<?php echo $rowII['opcion']; ?>'+'</span></label></div></div>');
+                                           $('#containerOpciones'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-xs-12"><div class="btn-group btn-group-vertical" data-toggle="buttons"><label class="btn active"><input type="radio"  value="'+'<?php echo $rowII['opcion']; ?>'+'" name="radioButton'+'<?php echo $contador2; ?>'+'"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span>'+'<?php echo $rowII['opcion']; ?>'+'</span></label></div></div>');
                                         }
                                         else{
                                             if('<?php echo $tipo; ?>' == "Seleccion Unica"){
-                                                $('#containerOpciones'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-xs-12"><div class="btn-group btn-group-vertical" data-toggle="buttons"><label class="btn active"><input type="radio" checked value="'+'<?php echo $rowII['opcion']; ?>'+'" name="radioButton'+'<?php echo $contador2; ?>'+'"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span>'+'<?php echo $rowII['opcion']; ?>'+'</span></label></div></div>');
+                                                $('#containerOpciones'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-xs-12"><div class="btn-group btn-group-vertical" data-toggle="buttons"><label class="btn active"><input type="radio"  value="'+'<?php echo $rowII['opcion']; ?>'+'" name="radioButton'+'<?php echo $contador2; ?>'+'"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span>'+'<?php echo $rowII['opcion']; ?>'+'</span></label></div></div>');
                                             }
                                             else{
                                                  $('#containerOpciones'+'<?php echo $contadorServiciosString; ?>'+'').append('<div class="col-xs-12"><div class="btn-group btn-group-vertical" data-toggle="buttons"><label class="btn active"><input type="checkbox" name="checkBox'+'<?php echo $contadorServiciosString; ?>'+'"><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i> <span>'+'<?php echo $rowII['opcion']; ?>'+'</span></label></div></div>');
@@ -109,7 +109,7 @@
                 <div class="container">
                     <div clas="row">
                         <div class="col-md-12">
-                              <input type="Button" class="btn btn-info" id="centrarBot" value="Enviar Formulario."></input>
+                              <input type="sutmit" class="btn btn-info" id="centrarBot" value="Enviar Formulario."></input>
                         </div>
                     </div>
                 </div>
